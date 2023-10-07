@@ -4,7 +4,6 @@ import express, { request } from "express";
 import cors from "cors";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import path from 'path';
 import bodyParser from "body-parser";
 import Sentiment from 'sentiment';
 import AWS from 'aws-sdk'
@@ -16,15 +15,11 @@ config();
 const sentiment = new Sentiment();
 const app = express();
 app.use(bodyParser.json());
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-app.use(express.static());
 app.use(cors())
 
 
 app.get('/', (req, res) => {
-  console.log(__dirname)
-  res.sendFile(path.join(__dirname, '..', 'refletica', 'build', 'index.html'));
+  res.send("app running")
 });
 
 
